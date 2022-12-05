@@ -22,4 +22,10 @@ public class ProductController {
         return "Welcome to Add Product Page";
     }
 
+    @PostMapping("/deleteProduct")
+    public String DeleteProduct(){
+        return "Welcome to Delete Product Page";
+    }
+
+
 }
