@@ -27,5 +27,10 @@ public class ProductController {
         return "Welcome to Delete Product Page";
     }
 
+    @PostMapping("/searchProduct")
+    public String SearchProduct(){
+        return "Welcome to Search Product Page";
+    }
+
 
 }
