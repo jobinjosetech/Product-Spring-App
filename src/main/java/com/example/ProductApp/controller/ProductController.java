@@ -1,11 +1,17 @@
 package com.example.ProductApp.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.ProductApp.dao.ProductDao;
+import com.example.ProductApp.model.Products;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ProductController {
+    @Autowired
+    private ProductDao dao;
+    @CrossOrigin(origins = "*")
 
     @GetMapping("/")
     public String HomePage(){
@@ -13,12 +19,13 @@ public class ProductController {
     }
 
     @GetMapping("/viewAll")
-    public String ViewAll(){
-        return "Welcome to ViewAll Page";
+    public List<Products> ViewAll(){
+        return (List<Products>) dao.findAll();
     }
 
-    @PostMapping("/addProduct")
-    public String AddProduct(){
+    @PostMapping(path = "/addProduct", consumes = "application/json", produces = "application/json")
+    public String AddProduct(@RequestBody Products p){
+        dao.save(p);
         return "Welcome to Add Product Page";
     }
 
